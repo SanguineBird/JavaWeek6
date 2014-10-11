@@ -4,15 +4,16 @@ Date: 10/11/2014
 Programming Assignment 6 - Towers of Hanoi
 Purpose: Make and test two classes: WrapperDeep and WrapperDeep to
 demonstrate proper and improper copy constructors*/
+import java.util.Scanner;
 
 public class TowersOfHanoi{
   
   public static void main(String[] args){
     char[] array;
-    int t; // total number of discs
+    int t = 0; // total number of discs
     int max; // highest identifying value for a disc's index
     int n; //counter
-    /*Scanner keyboard = new Scanner(System.in);
+    Scanner keyboard = new Scanner(System.in);
     //prompt for number of discs
     System.out.println("Please enter the total number of discs");
      try{
@@ -20,8 +21,8 @@ public class TowersOfHanoi{
      }
     catch(NumberFormatException e){
       System.err.println("e.getMessage()");
-    }*/
-    t = 3; //replace this with above
+    }
+    //t = 3; //replace this with above
     array = new char[t];
     max = t-1;
     
@@ -30,21 +31,19 @@ public class TowersOfHanoi{
       array[n] = 'A';
     }
     
-    toString(array);
+    toString(max, array);
     
     move(max, array);
     
-    toString(array);
   }
   
   
-  public static void toString(char array[]){//add parameter int max
-    /*int n; //counter
+  public static void toString(int max, char array[]){//add parameter int max
+    int n; //counter
       for(n = max; n >= 0; n--){
       System.out.print("Disc " + (n+1) + " is on tower " + array[n] + "; ");
     }
-    */
-    System.out.println("Disc 1 is on tower " + array[0] + "; Disc 2 is on tower " + array[1] + "; Disc 3 is on tower " + array[2]);
+    System.out.println("");
   }
   
   
@@ -53,30 +52,38 @@ public class TowersOfHanoi{
     
     //Step 1-------------------
     for(n = max; n >= 0; n--){
-      if(((n-1) != 'A') && ((n-1) != 'B'))
+      if(((n-1) != 'A') && ((n-1) != 'B')){
         array[n] = 'B';
-      else if(((n-1) != 'A') && ((n-1) != 'C'))
+        toString(max, array);
+      }
+      else if(((n-1) != 'A') && ((n-1) != 'C')){
         array[n] = 'C';
+        toString(max, array);
+      }
       else
         move(max, array);
     }
     
     //Step 2-------------------
-    if(((max-1) != 'A') && ((max-1) != 'C'))
+    if(((max-1) != 'A') && ((max-1) != 'C')){
       array[max] = 'C';
+      toString(max, array);
+    }
     else
       move(max, array);
       
     //Step 3-------------------
     for(n = max; n >= 0; n--){
-      if(((n-1) != 'B') && ((n-1) != 'C'))
+      if(((n-1) != 'B') && ((n-1) != 'C')){
         array[n] = 'C';
-      else if(((n-1) != 'B') && ((n-1) != 'A'))
+        toString(max, array);
+      }
+      else if(((n-1) != 'B') && ((n-1) != 'A')){
         array[n] = 'A';
+        toString(max, array);
+      }
       else
         move(max, array);
     }
-    
-    toString(array);
   }
 }
