@@ -22,7 +22,7 @@ public class TowersOfHanoi{
     catch(NumberFormatException e){
       System.err.println("e.getMessage()");
     }
-    //t = 3; //replace this with above
+
     array = new char[t];
     max = t-1;
     
