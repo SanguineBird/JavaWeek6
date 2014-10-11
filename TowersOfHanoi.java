@@ -10,6 +10,7 @@ public class TowersOfHanoi{
   public static void main(String[] args){
     char[] array;
     int t; // total number of discs
+    int max; // highest identifying value for a disc's index
     int n; //counter
     /*Scanner keyboard = new Scanner(System.in);
     //prompt for number of discs
@@ -22,23 +23,24 @@ public class TowersOfHanoi{
     }*/
     t = 3; //replace this with above
     array = new char[t];
+    max = t-1;
     
     //initializes entire array to A
-    for(n = t; n >= 0; n--){
+    for(n = max; n >= 0; n--){
       array[n] = 'A';
     }
     
     toString(array);
     
-    move(t, array);
+    move(max, array);
     
     toString(array);
   }
   
   
-  public static void toString(char array[]){//add parameter int t
+  public static void toString(char array[]){//add parameter int max
     /*int n; //counter
-      for(n = t; n >= 0; n--){
+      for(n = max; n >= 0; n--){
       System.out.print("Disc " + (n+1) + " is on tower " + array[n] + "; ");
     }
     */
@@ -46,33 +48,33 @@ public class TowersOfHanoi{
   }
   
   
-  public static void move(int t, char array[]){
+  public static void move(int max, char array[]){
     int n; //counter
     
     //Step 1-------------------
-    for(n = t; n >= 0; n--){
+    for(n = max; n >= 0; n--){
       if(((n-1) != 'A') && ((n-1) != 'B'))
         array[n] = 'B';
       else if(((n-1) != 'A') && ((n-1) != 'C'))
         array[n] = 'C';
       else
-        move(t, array);
+        move(max, array);
     }
     
     //Step 2-------------------
-    if(((t-1) != 'A') && ((t-1) != 'C'))
-      array[t] = 'C';
+    if(((max-1) != 'A') && ((max-1) != 'C'))
+      array[max] = 'C';
     else
-      move(t, array);
+      move(max, array);
       
     //Step 3-------------------
-    for(n = t; n >= 0; n--){
+    for(n = max; n >= 0; n--){
       if(((n-1) != 'B') && ((n-1) != 'C'))
         array[n] = 'C';
       else if(((n-1) != 'B') && ((n-1) != 'A'))
         array[n] = 'A';
       else
-        move(t, array);
+        move(max, array);
     }
     
     toString(array);
